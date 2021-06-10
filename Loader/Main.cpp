@@ -1,3 +1,5 @@
+// credit to Zzuk: https://github.com/Zz9uk3/ZzukBot_V3/blob/master/Loader/Main.cpp
+
 #define WIN32_LEAN_AND_MEAN
 
 // Pick which CLR runtime we'll be using. 4.0 has different hosting APIs
@@ -18,6 +20,7 @@
 #endif
 // CLR errors
 #include "CorError.h"
+#include <iostream>
 
 // No rough configuration needed. :)
 #pragma comment( lib, "mscoree" )
@@ -51,6 +54,9 @@ wchar_t* dllLocation = NULL;
 
 unsigned __stdcall ThreadMain(void* pParam)
 {
+	AllocConsole();
+	freopen("CONOUT$", "w", stdout);
+
 	HRESULT hr = CLRCreateInstance(CLSID_CLRMetaHostPolicy, IID_ICLRMetaHostPolicy, (LPVOID*)&g_pMetaHost);
 
 	if (FAILED(hr))
@@ -66,9 +72,9 @@ unsigned __stdcall ThreadMain(void* pParam)
 	DWORD pcchVersion = 0;
 	DWORD dwConfigFlags = 0;
 
-	wchar_t tmpbuff[1024];
-	wsprintf(tmpbuff, L"dllLocation: %s pcchVersion: %d dwConfigFlags: %d g_pMetaHost: 0x%lx", dllLocation, pcchVersion, dwConfigFlags, g_pMetaHost);
-	MB(tmpbuff);
+	//wchar_t tmpbuff[1024];
+	//wsprintf(tmpbuff, L"dllLocation: %s pcchVersion: %d dwConfigFlags: %d g_pMetaHost: 0x%lx", dllLocation, pcchVersion, dwConfigFlags, g_pMetaHost);
+	//MB(tmpbuff);
 
 	hr = g_pMetaHost->GetRequestedRuntime(METAHOST_POLICY_HIGHCOMPAT,
 		dllLocation, NULL,
@@ -131,7 +137,6 @@ unsigned __stdcall ThreadMain(void* pParam)
 	if (FAILED(hr))
 	{
 		MB(L"Failed to execute in the default app domain!");
-
 
 		switch (hr)
 		{
