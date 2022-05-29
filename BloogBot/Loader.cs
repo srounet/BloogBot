@@ -7,11 +7,11 @@ using System.Threading.Tasks;
 
 namespace BloogBot
 {
-    class Loader
+    internal class Loader
     {
-        static Thread thread;
+        private static Thread thread;
 
-        static int Load(string args)
+        private static int Load(string args)
         {
             thread = new Thread(App.Main);
             thread.SetApartmentState(ApartmentState.STA);

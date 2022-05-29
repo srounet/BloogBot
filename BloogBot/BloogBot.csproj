@@ -38,6 +38,9 @@
     <AllowUnsafeBlocks>true</AllowUnsafeBlocks>
   </PropertyGroup>
   <ItemGroup>
+    <Reference Include="Newtonsoft.Json, Version=13.0.0.0, Culture=neutral, PublicKeyToken=30ad4fe6b2a6aeed, processorArchitecture=MSIL">
+      <HintPath>..\packages\Newtonsoft.Json.13.0.1\lib\net45\Newtonsoft.Json.dll</HintPath>
+    </Reference>
     <Reference Include="System" />
     <Reference Include="System.Data" />
     <Reference Include="System.Xml" />
@@ -54,20 +57,56 @@
     <Reference Include="PresentationFramework" />
   </ItemGroup>
   <ItemGroup>
-    <ApplicationDefinition Include="App.xaml">
+    <ApplicationDefinition Include="UI\App.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
-    <Page Include="MainWindow.xaml">
+    <Page Include="UI\MainWindow.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </Page>
-    <Compile Include="App.xaml.cs">
+    <Compile Include="AI\Bot.cs" />
+    <Compile Include="AI\CombatState.cs" />
+    <Compile Include="AI\GrindState.cs" />
+    <Compile Include="AI\IBotState.cs" />
+    <Compile Include="AI\LootState.cs" />
+    <Compile Include="AI\MoveToTargetState.cs" />
+    <Compile Include="AI\RestState.cs" />
+    <Compile Include="AI\RetrieveCorpseState.cs" />
+    <Compile Include="Game\Enums\ClickToMoveType.cs" />
+    <Compile Include="Game\Enums\ClientDB.cs" />
+    <Compile Include="Game\Enums\DynamicFlags.cs" />
+    <Compile Include="Game\Enums\ePlayerFields.cs" />
+    <Compile Include="Game\Enums\eUnitFields.cs" />
+    <Compile Include="Game\Enums\MovementFlags.cs" />
+    <Compile Include="Game\Enums\ObjectType.cs" />
+    <Compile Include="Game\Enums\UnitFlags.cs" />
+    <Compile Include="Game\Functions.cs" />
+    <Compile Include="Game\Objects\ObjectManager.cs" />
+    <Compile Include="Game\Objects\UnitReactions.cs" />
+    <Compile Include="Game\Objects\WoWGameObject.cs" />
+    <Compile Include="Game\Objects\WoWItem.cs" />
+    <Compile Include="Game\Objects\WoWObject.cs" />
+    <Compile Include="Game\Objects\WoWPlayer.cs" />
+    <Compile Include="Game\Objects\WoWPlayerMe.cs" />
+    <Compile Include="Game\Objects\WoWSpell.cs" />
+    <Compile Include="Game\Objects\WoWUnit.cs" />
+    <Compile Include="Game\Position.cs" />
+    <Compile Include="Game\QuestCollection.cs" />
+    <Compile Include="Game\Structs\Quests.cs" />
+    <Compile Include="Game\Structs\SpellRec.cs" />
+    <Compile Include="Game\Structs\XYZ.cs" />
+    <Compile Include="Game\WoWDB.cs" />
+    <Compile Include="Game\WowQuest.cs" />
+    <Compile Include="MemoryManager.cs" />
+    <Compile Include="Navigation.cs" />
+    <Compile Include="ThreadSynchronizer.cs" />
+    <Compile Include="UI\App.xaml.cs">
       <DependentUpon>App.xaml</DependentUpon>
       <SubType>Code</SubType>
     </Compile>
     <Compile Include="Loader.cs" />
-    <Compile Include="MainWindow.xaml.cs">
+    <Compile Include="UI\MainWindow.xaml.cs">
       <DependentUpon>MainWindow.xaml</DependentUpon>
       <SubType>Code</SubType>
     </Compile>
@@ -90,6 +129,7 @@
       <Generator>ResXFileCodeGenerator</Generator>
       <LastGenOutput>Resources.Designer.cs</LastGenOutput>
     </EmbeddedResource>
+    <None Include="packages.config" />
     <None Include="Properties\Settings.settings">
       <Generator>SettingsSingleFileGenerator</Generator>
       <LastGenOutput>Settings.Designer.cs</LastGenOutput>
@@ -98,5 +138,6 @@
   <ItemGroup>
     <None Include="App.config" />
   </ItemGroup>
+  <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>
